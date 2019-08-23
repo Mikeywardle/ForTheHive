@@ -45,10 +45,11 @@ public class TileSetter : MonoBehaviour
     private void AddPlaceable()
     {
         Placeable toAdd = Instantiate(toPlace);
-        toAdd.remainingResourceTime = toAdd.totalResourceTime;
         toAdd.position = new Vector2Int(mousePositionInt.x, mousePositionInt.y);
-        resourceManager.addPlaceable(toAdd);
-        DrawTiles(buildingMap);
+        if (resourceManager.addPlaceable(toAdd))
+            DrawTiles(buildingMap);
+        else
+            Destroy(toAdd);
     }
 
     private bool DrawTiles(Tilemap map)
@@ -89,6 +90,7 @@ public class TileSetter : MonoBehaviour
         toPlace = placeable;
         placeableHeight = toPlace.rows.Length;
         placeableWidth = toPlace.rows[0].tiles.Length;
+        toPlace.remainingResourceTime = toPlace.totalResourceTime;
     }
 
     public void ClearToPlace()

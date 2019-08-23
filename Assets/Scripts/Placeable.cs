@@ -17,9 +17,13 @@ public class Placeable : ScriptableObject
 
     public int population;
     public int ore;
-    public int electricity;
+    public int power;
     public float totalResourceTime;
     public float remainingResourceTime;
+
+    public int reqOre;
+    public int reqPopulation;
+    public int reqPower;
 
     public TileRow[] rows;
     public Vector2Int position;   
