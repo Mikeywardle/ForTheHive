@@ -5,17 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameLoader : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    [SerializeField] private GameObject gameDataPrefab;
     void Update()
     {
         if (Input.GetButtonDown("Jump"))
+        {
+            Instantiate(gameDataPrefab);
             SceneManager.LoadScene("WorldScene");
+        }
 
     }
 }

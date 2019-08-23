@@ -9,16 +9,19 @@ public class TileRow
     public Tile[] tiles;
 }
 
-public class Placeable : MonoBehaviour
+[CreateAssetMenu(fileName = "newBuilding", menuName = "Prefabs/Buildings")]
+[System.Serializable]
+public class Placeable : ScriptableObject
 {
-    public TileRow[] rows;
-    public int height;
-    public int width;
+    public bool generatesResources;
 
-    public void Start()
-    {
-        height = rows.Length;
-        width = rows[0].tiles.Length;
-    }
+    public int population;
+    public int ore;
+    public int electricity;
+    public float totalResourceTime;
+    public float remainingResourceTime;
+
+    public TileRow[] rows;
+    public Vector2Int position;   
 
 }
