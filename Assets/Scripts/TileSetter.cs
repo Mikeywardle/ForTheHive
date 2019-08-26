@@ -33,26 +33,26 @@ public class TileSetter : MonoBehaviour
             mousePositionInt = new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0);
 
             if (toPlace && mousePositionInt.y > 0) {
-                bool canPlace =  DrawTiles(toPlaceMap);
+                bool canPlace =  DrawTiles(toPlaceMap, mousePositionInt.x, mousePositionInt.y);
                 if (!canPlace)
                     toPlaceMap.color = blockedColor;
                 else if (Input.GetMouseButtonDown(0)&& UIUtils.mouseIsOverUI())
-                    AddPlaceable();
+                    AddPlaceable(mousePositionInt.x, mousePositionInt.y);
             }
         //}
     }
 
-    private void AddPlaceable()
+    public void AddPlaceable(int x, int y)
     {
         Placeable toAdd = Instantiate(toPlace);
-        toAdd.position = new Vector2Int(mousePositionInt.x, mousePositionInt.y);
+        toAdd.position = new Vector2Int(x,y);
         if (resourceManager.addPlaceable(toAdd))
-            DrawTiles(buildingMap);
+            DrawTiles(buildingMap, x, y);
         else
             Destroy(toAdd);
     }
 
-    private bool DrawTiles(Tilemap map)
+    private bool DrawTiles(Tilemap map, int x, int y)
     {
         int midpoint = (placeableWidth / 2) + 1;
         bool doesntOverlap = true;
@@ -60,8 +60,8 @@ public class TileSetter : MonoBehaviour
         for (int j = 0; j < placeableHeight; j++)        {
             for (int i = 0; i < placeableWidth; i++)
             {
-                drawPos= new Vector3Int(0, mousePositionInt.y+j, 0);
-                drawPos.x = mousePositionInt.x + (i - midpoint);
+                drawPos= new Vector3Int(0, y+j, 0);
+                drawPos.x = x + (i - midpoint);
                 map.SetTile(drawPos, toPlace.rows[0].tiles[i]);
 
                 if (buildingMap.HasTile(drawPos))

@@ -26,14 +26,14 @@ public class ResourceManager : MonoBehaviour
         foreach (KeyValuePair<Vector2Int, Placeable> entry in placeables)
         {
             current = entry.Value;
-            if (current.generatesResources)
+            if (current.reqPower <= totalPower)
             {
                 current.remainingResourceTime -= deltaTime;
 
                 if (current.remainingResourceTime <= 0)
                 {
                     totalOre += current.ore;
-                    totalPower += current.power;
+                    totalPower += (current.power-current.reqPower);
                     current.remainingResourceTime = current.totalResourceTime;
                 }
             }

@@ -13,8 +13,6 @@ public class TileRow
 [System.Serializable]
 public class Placeable : ScriptableObject
 {
-    public bool generatesResources;
-
     public int population;
     public int ore;
     public int power;
