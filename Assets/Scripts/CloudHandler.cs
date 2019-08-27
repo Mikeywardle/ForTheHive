@@ -12,6 +12,7 @@ public class CloudHandler : MonoBehaviour
 
     [SerializeField] private int xLimit;
     [SerializeField] private int yLimit;
+    [SerializeField] private float spread;
 
     private SpriteRenderer[] clouds;
     private float[] speeds;
@@ -30,7 +31,7 @@ public class CloudHandler : MonoBehaviour
         for (int i = 0; i < numberOfClouds; i++)
         {
             index = Random.Range(0, cloudMaxIndex);
-            position = new Vector3(Random.Range(-1.0f * xLimit, xLimit), RandomFromDistribution.RandomNormalDistribution(yLimit, yLimit/1.7f), 0.0f);
+            position = new Vector3(Random.Range(-1.0f * xLimit, xLimit), RandomFromDistribution.RandomNormalDistribution(yLimit, yLimit/spread), 0.0f);
             clouds[i] = Instantiate(cloudSprites[index], position, Quaternion.identity);
             speeds[i] = Random.Range(-10.0f, 10.0f);
         }
@@ -40,8 +41,16 @@ public class CloudHandler : MonoBehaviour
     {
         for (int i = 0; i < numberOfClouds; i++)
         {
-            frameMove = speeds[i] * Time.deltaTime *Mathf.Sin(Time.fixedTime)* Vector3.right;
-            clouds[i].gameObject.transform.Translate(frameMove);
+            frameMove = speeds[i] * Vector3.right *Time.deltaTime;
+            GameObject curent = clouds[i].gameObject;
+            curent.transform.Translate(frameMove);
+
+            Vector3 afterMove = curent.transform.position;
+
+            if (Mathf.Abs(afterMove.x) >= xLimit) {
+                afterMove.x *= -1.0f;
+                curent.transform.SetPositionAndRotation(afterMove, Quaternion.identity);
+            }
         }
     }
 }
