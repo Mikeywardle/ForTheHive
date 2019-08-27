@@ -12,16 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bcd20cb93076004a9f7266f128064f7, type: 3}
   m_Name: Worker_Shack
   m_EditorClassIdentifier: 
-  generatesResources: 0
   population: 2
   ore: 0
   power: 0
-  totalResourceTime: 0
-  remainingResourceTime: 0
+  totalResourceTime: 10
+  remainingResourceTime: 10
   reqOre: 10
   reqPopulation: 0
-  reqPower: 0
+  reqPower: 1
   rows:
   - tiles:
-    - {fileID: 11400000, guid: e574cde4a2d7ccb4aab4809d5d00ca8f, type: 2}
+    - {fileID: 11400000, guid: 5d562bdd36d46f9489d943ba592fe5eb, type: 2}
   position: {x: 0, y: 0}

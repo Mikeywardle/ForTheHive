@@ -10,7 +10,8 @@ public class WorldGenerator : MonoBehaviour
     [SerializeField] private int worldWidth;
     [SerializeField] private Tilemap ground;
     [SerializeField] private Tilemap buildings;
-    [SerializeField] private Tile baseSprite;
+    [SerializeField] private Placeable baseShip;
+    [SerializeField] private TileSetter tileSetter;
 
     void Start()
     {
@@ -26,12 +27,9 @@ public class WorldGenerator : MonoBehaviour
             }
         }
 
-        PlaceBase();
+        tileSetter.LoadToPlace(baseShip);
+        tileSetter.AddPlaceable(0, 1);
+        tileSetter.ClearToPlace();
     }
 
-    public void PlaceBase()
-    {
-        buildings.SetTile(new Vector3Int(0, 1, 0), baseSprite);
-        buildings.SetTile(new Vector3Int(1, 1, 0), baseSprite);
-    }
 }

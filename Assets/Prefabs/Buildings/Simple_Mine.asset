@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bcd20cb93076004a9f7266f128064f7, type: 3}
   m_Name: Simple_Mine
   m_EditorClassIdentifier: 
-  generatesResources: 0
   population: 0
   ore: 3
   power: 0
@@ -23,6 +22,6 @@ MonoBehaviour:
   reqPower: 5
   rows:
   - tiles:
-    - {fileID: 11400000, guid: e574cde4a2d7ccb4aab4809d5d00ca8f, type: 2}
-    - {fileID: 11400000, guid: e574cde4a2d7ccb4aab4809d5d00ca8f, type: 2}
+    - {fileID: 11400000, guid: 7ec927c17bb0e434b83cea48ca526373, type: 2}
+    - {fileID: 11400000, guid: 946c4ee871aa78f4ea2a76b30b865872, type: 2}
   position: {x: 0, y: 0}
