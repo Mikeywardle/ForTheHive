@@ -8,16 +8,13 @@ public class Building : MonoBehaviour
 
     public Vector2Int position;
     public Placeable placeable { get; private set; }
+    public bool overlap { get; private set; }
 
-    private void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     public void LoadBuiling(Placeable placeable)
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         this.placeable = placeable;
         spriteRenderer.sprite = this.placeable.sprite;
     }
-
 }

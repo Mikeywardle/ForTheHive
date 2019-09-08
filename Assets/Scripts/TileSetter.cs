@@ -8,7 +8,6 @@ public class TileSetter : MonoBehaviour
 {
     [SerializeField] private Color blockedColor;
     [SerializeField] private Color placeColor;
-    [SerializeField] private Color clear;
 
     [SerializeField] private ResourceManager resourceManager;
     [SerializeField] private Building buildingPrefab;
@@ -18,20 +17,31 @@ public class TileSetter : MonoBehaviour
     private Vector3Int mousePositionInt;
     private Vector3 mousePosition;
     private Vector3Int drawPos;
+    private bool collision;
+    private bool isAdjacent;
 
 
     void Update()
     {
-
+        if (toPlace)
+        {
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePositionInt = new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0);
-
-            if (toPlace && mousePositionInt.y > 0) {
-                toPlace.GetComponent<SpriteRenderer>().color = Color.white;
+            collision = Physics2D.IsTouchingLayers(toPlace.GetComponent<BoxCollider2D>(),Physics2D.AllLayers);
+            if (mousePositionInt.y > 0)
+            {
+                toPlace.GetComponent<SpriteRenderer>().color = placeColor;
                 toPlace.gameObject.transform.position = new Vector3(mousePositionInt.x, mousePositionInt.y, 0);
-            if (Input.GetMouseButtonDown(0) && UIUtils.mouseIsOverUI())
-                Instantiate(toPlace.gameObject);
+                if (collision)
+                    toPlace.GetComponent<SpriteRenderer>().color = blockedColor;
+                else if (Input.GetMouseButtonDown(0) && UIUtils.mouseIsOverUI())
+                {
+                    toPlace.GetComponent<SpriteRenderer>().color = Color.white;
+                    Building toAdd = Instantiate(toPlace);
+                    resourceManager.addPlaceable(toAdd);
+                }
             }
+        }
     }
 
     //private bool Adjacent(Vector3Int currentTile)
