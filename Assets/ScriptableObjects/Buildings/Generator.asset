@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bcd20cb93076004a9f7266f128064f7, type: 3}
-  m_Name: Worker_Shack
+  m_Name: Generator
   m_EditorClassIdentifier: 
-  population: 2
+  population: 0
   ore: 0
-  power: 0
-  totalResourceTime: 10
-  remainingResourceTime: 10
-  reqOre: 10
+  power: 5
+  totalResourceTime: 3
+  remainingResourceTime: 3
+  reqOre: 5
   reqPopulation: 0
-  reqPower: 1
-  rows:
-  - tiles:
-    - {fileID: 11400000, guid: 5d562bdd36d46f9489d943ba592fe5eb, type: 2}
-  position: {x: 0, y: 0}
+  reqPower: 0
+  sprite: {fileID: 21300000, guid: c3e74a1678fdeb84295a980d509b1742, type: 3}

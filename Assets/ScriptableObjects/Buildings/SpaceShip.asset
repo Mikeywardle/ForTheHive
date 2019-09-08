@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bcd20cb93076004a9f7266f128064f7, type: 3}
-  m_Name: Generator
+  m_Name: SpaceShip
   m_EditorClassIdentifier: 
   population: 0
   ore: 0
   power: 5
-  totalResourceTime: 3
-  remainingResourceTime: 3
-  reqOre: 5
+  totalResourceTime: 5
+  remainingResourceTime: 5
+  reqOre: 0
   reqPopulation: 0
   reqPower: 0
-  rows:
-  - tiles:
-    - {fileID: 11400000, guid: 03a9f42bf0bb75e4db87d4da030e0dba, type: 2}
-  position: {x: 0, y: 0}
+  sprite: {fileID: 21300000, guid: 8181a5436b9642648ab1bd93f3665a0b, type: 3}

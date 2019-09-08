@@ -1,15 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-
-[System.Serializable]
-public class TileRow
-{
-    public Tile[] tiles;
-}
-
-[CreateAssetMenu(fileName = "newBuilding", menuName = "Prefabs/Buildings")]
+using UnityEngine;
+[CreateAssetMenu(fileName = "newBuilding", menuName = "ScriptableObject/Buildings")]
 [System.Serializable]
 public class Placeable : ScriptableObject
 {
@@ -23,7 +16,6 @@ public class Placeable : ScriptableObject
     public int reqPopulation;
     public int reqPower;
 
-    public TileRow[] rows;
-    public Vector2Int position;   
-
+    public Sprite sprite;
+    
 }

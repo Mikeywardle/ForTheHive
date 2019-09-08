@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ResourceManager : MonoBehaviour
 {
-    private Dictionary<Vector2Int, Placeable> placeables = new Dictionary<Vector2Int, Placeable>();
+    private List<Placeable> placeables = new List<Placeable>();
     private int numOfPlaceables = 0;
     private int totalPopulation = 0;
     private int totalPower = 0;
@@ -16,16 +16,14 @@ public class ResourceManager : MonoBehaviour
     [SerializeField] private Text populationText;
     [SerializeField] private Text oreText;
 
-    private Placeable current;
     private float deltaTime;
 
     void Update()
     {
         deltaTime = Time.deltaTime;    
 
-        foreach (KeyValuePair<Vector2Int, Placeable> entry in placeables)
+        foreach (Placeable current in placeables)
         {
-            current = entry.Value;
             if (current.reqPower <= totalPower)
             {
                 current.remainingResourceTime -= deltaTime;
@@ -51,7 +49,7 @@ public class ResourceManager : MonoBehaviour
         totalPopulation += placeable.population;
         totalOre -= placeable.reqOre;
         totalPopulation -= placeable.reqPopulation;
-        placeables.Add(placeable.position, placeable);
+        placeables.Add(placeable);
 
         numOfPlaceables++;
         return true;

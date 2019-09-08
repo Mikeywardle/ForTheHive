@@ -43,8 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d5a80600b222364e9ed38fb796b4d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toPlaceMap: {fileID: 0}
-  buildingMap: {fileID: 0}
-  toPlace: {fileID: 0}
   blockedColor: {r: 1, g: 0, b: 0, a: 0.50980395}
   placeColor: {r: 0.107467085, g: 0.25178856, b: 0.990566, a: 0.4}
+  clear: {r: 1, g: 1, b: 1, a: 0}
+  resourceManager: {fileID: 0}
+  buildingPrefab: {fileID: 1487798927286747240, guid: dc65eabf4bc49374faadec7aadb916e5,
+    type: 3}
