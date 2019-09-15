@@ -10,14 +10,15 @@ public class Building : MonoBehaviour
 
     public float LoadBuiling(Placeable placeable)
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         this.placeable = placeable;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
         employees = new Person[placeable.reqPopulation];
 
-        spriteRenderer.sprite = this.placeable.sprite;
+        spriteRenderer.sprite = placeable.sprite;
         Rect rect = GetComponent<SpriteRenderer>().sprite.rect;
         float resolution = GetComponent<SpriteRenderer>().sprite.pixelsPerUnit;
-        GetComponent<BoxCollider2D>().size = new Vector2((rect.width / resolution) - 0.1f, (rect.height / resolution));
+        GetComponent<BoxCollider2D>().size = new Vector2((rect.width / resolution) - 0.1f, (rect.height / resolution)-0.1f);
 
         if ((rect.width / resolution) % 2 == 0)
             return 0.5f;

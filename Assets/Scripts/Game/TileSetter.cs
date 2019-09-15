@@ -29,29 +29,28 @@ public class TileSetter : MonoBehaviour
             mousePositionInt = new Vector3Int((int)mousePosition.x, (int)mousePosition.y, 0);
             collisions = Physics2D.OverlapAreaAll(toPlace.GetComponent<BoxCollider2D>().bounds.min, toPlace.GetComponent<BoxCollider2D>().bounds.max);
 
-            if (mousePositionInt.y > 0)
+            toPlace.GetComponent<SpriteRenderer>().color = placeColor;
+            toPlace.gameObject.transform.position = new Vector3(mousePositionInt.x + offset, mousePositionInt.y, 0);
+            if (collisions.Length > 1 || NotAdjacent(toPlace.GetComponent<BoxCollider2D>()) || resourceManager.CantAfford(toPlace.GetComponent<Building>().placeable))  
             {
-                toPlace.GetComponent<SpriteRenderer>().color = placeColor;
-                toPlace.gameObject.transform.position = new Vector3(mousePositionInt.x+offset, mousePositionInt.y, 0);
-                if (collisions.Length > 1 || NotAdjacent(toPlace.GetComponent<BoxCollider2D>()) || resourceManager.CantAfford(toPlace.GetComponent<Building>().placeable))
-                {
-                    toPlace.GetComponent<SpriteRenderer>().color = blockedColor;
-                }
-                else if (Input.GetMouseButtonDown(0) && UIUtils.mouseIsOverUI())
-                {
-                    toPlace.GetComponent<SpriteRenderer>().color = Color.white;
-                    GameObject toAdd = Instantiate(toPlace);
-                    resourceManager.addPlaceable(toAdd.GetComponent<Building>());
-                }
+                toPlace.GetComponent<SpriteRenderer>().color = blockedColor;
+            }
+            else if (Input.GetMouseButtonDown(0) && UIUtils.mouseIsOverUI())
+            {
+                toPlace.GetComponent<SpriteRenderer>().color = Color.white;
+                GameObject toAdd = Instantiate(toPlace);
+                resourceManager.addPlaceable(toAdd.GetComponent<Building>());
             }
         }
+
     }
 
     private bool NotAdjacent(BoxCollider2D collider)
     {
-        return collider.Cast(Vector2.right, new RaycastHit2D[2],1)==0 
-            && collider.Cast(Vector2.left, new RaycastHit2D[2], 1) == 0
-            && collider.Cast(Vector2.down, new RaycastHit2D[2], 1) == 0;
+        return collider.Cast(Vector2.right, new RaycastHit2D[2], 0.5f) ==0 
+            && collider.Cast(Vector2.left, new RaycastHit2D[2], 0.5f) == 0
+            && collider.Cast(Vector2.down, new RaycastHit2D[2],0.5f) == 0
+            && collider.Cast(Vector2.up, new RaycastHit2D[2], 0.5f) == 0;
     }
 
     public void LoadToPlace(Placeable placeable)

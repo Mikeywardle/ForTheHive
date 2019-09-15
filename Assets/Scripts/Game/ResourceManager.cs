@@ -19,6 +19,7 @@ public class ResourceManager : MonoBehaviour
     [SerializeField] private Text electricityText;
     [SerializeField] private Text populationText;
     [SerializeField] private Text oreText;
+    [SerializeField] private PeopleManager peopleManager;
 
     private float deltaTime;
     private Placeable currentPopulating;
@@ -93,7 +94,9 @@ public class ResourceManager : MonoBehaviour
         totalPower += placeable.power;
         totalOre -= placeable.reqOre;
         totalPopulation -= placeable.reqPopulation;
+
         buildingsMap[placeable.economicLevel].Add(building);
+        peopleManager.addPeople(placeable.population, placeable.economicLevel);
 
         numOfPlaceables++;
     }

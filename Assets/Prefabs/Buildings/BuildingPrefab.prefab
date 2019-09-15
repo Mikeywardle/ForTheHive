@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6743860328283860506}
   m_Layer: 8
   m_Name: BuildingPrefab
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8979eba6faca544a23a5354036e4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 0}
   placeable: {fileID: 0}
+  employees: []
 --- !u!61 &1487798927286747241
 BoxCollider2D:
   m_ObjectHideFlags: 0

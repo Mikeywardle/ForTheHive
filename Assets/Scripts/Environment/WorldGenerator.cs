@@ -29,11 +29,11 @@ public class WorldGenerator : MonoBehaviour
                 height = 0;
             else
                 perlin= Mathf.PerlinNoise(i / 0.0001f, amplitude / 0.0001f);
-                Debug.Log(perlin);
+                //Debug.Log(perlin);
                 height = Mathf.FloorToInt(perlin);
 
 
-            for (int j=height; j > -20; j--)
+            for (int j=0; j > -20; j--)
             {
                 blockPosition = new Vector3Int(i, j, 0);
                 ground.SetTile(blockPosition, groundBlocks[0]);
